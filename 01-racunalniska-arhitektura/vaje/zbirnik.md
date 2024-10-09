@@ -6,9 +6,36 @@ Pri vseh nalogah se vam pod razdelkom **RAM** splača nastaviti _View_ na _Decim
 
 Zapišite program, ki v register `A` zapiše ostanek pri deljenju registra `A` z registrom `B`.
 
+; Define first variable in A and C: 
+	MOV A, 2
+	PUSH A
+
+; Define second variable in B 
+	MOV B, 4
+
+; Divide A with B
+	DIV B
+; Get whole division with from A:
+	MUL B
+	POP C
+	SUB C, A
+	MOV A, C
+
 ## Zaporedna števila
 
 Zapišite program, ki na sklad zaporedno postavlja števila od 13 do 42.
+
+; Define starting number:
+	MOV A, 13
+; Define ending number:
+	MOV B, 43
+	
+add:	; Push value to stack
+		PUSH A
+	; Increase A by one
+		INC A
+CMP A, B
+JNE add
 
 ## Iskanje najmanjšega števila v seznamu
 
