@@ -9,41 +9,51 @@ type vector = float list
 (*----------------------------------------------------------------------------*]
 Definirajte enotske vektorje `i`, `j` in `k` v treh dimenzijah.
 [*----------------------------------------------------------------------------*)
-
-
+let i = [1.; 0.; 0.]
+let j = [0.; 1.; 0.]
+let k = [0.; 0.; 1.]
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `razteg : float -> vector -> vector`, ki vektor, 
 predstavljen s seznamom števil s plavajočo vejico, pomnoži z danim skalarjem.
 [*----------------------------------------------------------------------------*)
 
-let rec razteg = ()
+let razteg scale vector = 
+  List.map(fun x -> scale *. x) vector
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `sestej : vector -> vector -> vector`, ki vrne vsoto dveh 
 vektorjev.
 [*----------------------------------------------------------------------------*)
 
-let rec sestej = ()
+let sestej vec1 vec2 = 
+  List.map2(fun x y -> x +. y) vec1 vec2
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `skalarni_produkt : vector -> vector -> float`, ki izračuna 
 skalarni produkt dveh vektorjev
 [*----------------------------------------------------------------------------*)
-
-let rec skalarni_produkt = ()
+let sum_list l = List.fold_left (+.) 0. l
+let skalarni_produkt vec1 vec2 = 
+  let zmonzeno = List.map2(fun x y -> x *. y) vec1 vec2 in 
+  sum_list zmonzeno
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `norma : vector -> float`, ki vrne evklidsko normo vektorja.
 [*----------------------------------------------------------------------------*)
 
-let rec norma = ()
+let norma vec =
+  let skalar = skalarni_produkt vec vec in 
+  Float.sqrt skalar 
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `projeciraj : vector -> vector -> vector`, ki izračuna 
 projekcijo prvega vektorja na drugega.
 [*----------------------------------------------------------------------------*)
 
-let rec projeciraj = ()
+let rec projeciraj vec1 vec2 = 
+  let skalarni = skalarni_produkt vec1 vec2 in
+  let skalarni2 = skalarni /. norma vec2 in 
+  razteg skalarni2 vec2
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `ovij : string -> string -> string`, ki sprejme ime HTML 
@@ -54,7 +64,8 @@ Primer:
 
 [*----------------------------------------------------------------------------*)
 
-let rec ovij = ()
+let ovij tag text = 
+  "<" ^ tag ^ ">" ^ text ^ "<" ^ tag ^ ">"
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `zamakni : int -> string -> string`, ki sprejme število 
@@ -65,7 +76,11 @@ Primer:
 
 [*----------------------------------------------------------------------------*)
 
-let rec zamakni = ()
+let zamakni zamik text =
+  let indent = String.make zamik ' ' in 
+  let split_list = String.split_on_char '\n' text in 
+  let pomnozen = List.map(fun x -> indent ^ x) split_list in
+  String.concat "" pomnozen
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `ul : string list -> string`, ki sprejme seznam nizov in vrne 
@@ -76,7 +91,10 @@ Primer:
 
 [*----------------------------------------------------------------------------*)
 
-let rec ul = ()
+let ul lst =
+  let lst2 = List.map (fun beseda -> "   <li>" ^ beseda ^ "</li>\n" ) lst in
+  "<ul>\n" ^ (String.concat "" lst2) ^ "</ul>"
+
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `razdeli_vrstico : string -> string * string`, ki sprejme niz, 
@@ -87,7 +105,11 @@ Primer:
 
 [*----------------------------------------------------------------------------*)
 
-let rec razdeli_vrstico = ()
+let razdeli_vrstico text = 
+  let split_text = String.split_on_char ',' text in 
+  match split_text with 
+  | [x; y] -> (x, y)
+  | _ -> failwith "The list must contain exactly 2 elements"
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `pretvori_v_seznam_parov : string -> (string * string) list`, 
@@ -99,7 +121,7 @@ Primer:
 
 [*----------------------------------------------------------------------------*)
 
-let rec pretvori_v_seznam_parov = ()
+let pretvori_v_seznam_parov = ()
 
 (*----------------------------------------------------------------------------*]
 Napišite funkcijo `pretvori_druge_komponente : ('a -> 'b) -> (string * 'a) list -> (string * 'b) list`,
