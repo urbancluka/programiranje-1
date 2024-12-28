@@ -88,27 +88,6 @@ def rep {A : Type} {n : Nat} : Vektor A n → Option (Vektor A (n - 1)) :=
    da če pije on, pijejo vsi v gostilni."
  Za dokaz potrebujete klasično logiko, torej nekaj iz modula `Classical`.
 ------------------------------------------------------------------------------/
-
-theorem eq6 {A B C : Prop} : (B ∨ C) → A ↔ (B → A) ∧ (C → A) :=
-  by 
-    apply Iff.intro 
-    . intro h 
-      apply And.intro 
-      . intro hb 
-        apply h 
-        left
-        assumption
-      . intro hc 
-        apply h 
-        right
-        assumption
-    . intro h hbc 
-      cases hbc
-      . apply h.left 
-        assumption
-      . apply h.right 
-        assumption
-
 theorem forall_implies : {A : Type} → {P Q : A → Prop} →
   (∀ x, (P x → Q x)) → (∀ x, P x) → (∀ x, Q x) := by
   intros A
