@@ -17,7 +17,13 @@
        /   / \
       0   6   11
 [*----------------------------------------------------------------------------*)
+type 'a tree =
+| Empty
+| Node of 'a tree * 'a * 'a tree
 
+let leaf x = 
+     Node (Empty, x, Empty)
+let test_tree = Node (Node(leaf 0, 2, Empty), 5, Node(leaf 6, 7, leaf 11))
 
 (*----------------------------------------------------------------------------*]
  Funkcija [mirror] vrne prezrcaljeno drevo. Na primeru [test_tree] torej vrne
