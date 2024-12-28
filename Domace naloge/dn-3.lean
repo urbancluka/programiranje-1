@@ -139,7 +139,7 @@ theorem paradoks_pivca :
   ∃ (p : G), (P p → ∀ (x : G), P x) := by
     intro G P g
     apply Classical.byCases
-    . intro wtf
+    . intro obstaja
       exists g
     
     . intro pivec_pije_ostali_ne
