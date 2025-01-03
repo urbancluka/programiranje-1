@@ -90,7 +90,7 @@ let test_tree = Node (Node(leaf 0, 2, Empty), 5, Node(leaf 6, 7, leaf 11))
 (*----------------------------------------------------------------------------*]
  Funkcija [insert] v iskalno drevo pravilno vstavi dani element. Funkcija 
  [member] preveri ali je dani element v iskalnem drevesu.
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - - - - - - - - - - - mark- - - - - - - - - - - - - - - -
  # insert 2 (leaf 4);;
  - : int tree = Node (Node (Empty, 2, Empty), 4, Empty)
  # member 3 test_tree;;
