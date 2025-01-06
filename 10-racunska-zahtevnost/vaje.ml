@@ -21,16 +21,6 @@ Natančno definirajte pogoje, da funkcija `f` uredi seznam.
  # insert 7 [];;
  - : int list = [7]
 [*----------------------------------------------------------------------------*)
-let rec rev xs = 
-  match xs with
-  | [] -> []
-  | x :: xs -> (rev xs) @ [x]
-
-let insert y xs =  
-  let rec aux acc x xs = 
-    match xs with 
-    | [] -> acc @ y
-    | x :: xs -> if y > x then 
 
 (*----------------------------------------------------------------------------*]
  Prazen seznam je že urejen. Funkcija [insert_sort] uredi seznam tako da
@@ -90,7 +80,7 @@ let insert y xs =
  Funkcija [index_min a lower upper] poišče indeks najmanjšega elementa tabele
  [a] med indeksoma [lower] and [upper] (oba indeksa sta vključena).
  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
- index_min [|0; 2; 9; 3; 6|] 2 4 = 4
+ index_min [|0; 2; 9; 3; 6|] 2 4 = 3
 [*----------------------------------------------------------------------------*)
 
 
